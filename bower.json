@@ -1,0 +1,25 @@
+{
+  "name": "python-gae-book",
+  "version": "0.0.0",
+  "authors": [
+    "Nick Nance <nance.nick@gmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone.composer": "~0.2.1",
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.1",
+    "requirejs": "~2.1.20",
+    "text": "requirejs-text#~2.0.14"
+  }
+}

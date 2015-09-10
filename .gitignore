@@ -43,3 +43,9 @@ _build
 
 # Sqlite database files
 *.sqlite
+
+#bower files
+static/components
+
+#mac osx
+.DS_Store

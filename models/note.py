@@ -16,6 +16,11 @@ class Note(ndb.Model):
             -cls.date_created)
 
     @classmethod
+    def owner_fetch(cls, user):
+        qry = cls.owner_query(user)
+        return qry.fetch()
+
+    @classmethod
     @ndb.transactional
     def create_note(cls, user, note_data, checklist_data):
         note = cls(parent=ndb.Key("User", user.nickname()),

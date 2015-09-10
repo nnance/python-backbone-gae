@@ -1,6 +1,6 @@
 import webapp2
-from controllers.note import MainHandler
+from controllers.note import NoteHandler
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
+    ('/', NoteHandler),
 ], debug=True)

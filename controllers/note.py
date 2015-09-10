@@ -6,22 +6,19 @@ import logging
 import os
 
 from models.note import Note
-from models.checklistitem import CheckListItem
 
 path = os.path.dirname(__file__).replace('controllers','templates')
 logging.debug(path)
+
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(path))
 
-
-class MainHandler(webapp2.RequestHandler):
+class NoteHandler(webapp2.RequestHandler):
     def _render_template(self, template_name, context=None):
         if context is None:
             context = {}
 
-        user = users.get_current_user()
-        qry = Note.owner_query(user)
-        context['notes'] = qry.fetch()
+        context['notes'] = Note.owner_fetch(users.get_current_user())
 
         template = jinja_env.get_template(template_name)
         return template.render(context)

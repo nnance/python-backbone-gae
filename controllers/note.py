@@ -14,11 +14,19 @@ jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(path))
 
 class NoteHandler(webapp2.RequestHandler):
+    def _note_to_dict(self, note):
+        logging.debug(note);
+        return {
+            'title': str(note.title),
+            'content': str(note.content)
+        }
+
     def _render_template(self, template_name, context=None):
         if context is None:
             context = {}
 
-        context['notes'] = Note.owner_fetch(users.get_current_user())
+        notes = Note.owner_fetch(users.get_current_user())
+        context['notes'] = map(self._note_to_dict, notes)
 
         template = jinja_env.get_template(template_name)
         return template.render(context)
@@ -56,11 +64,8 @@ class NoteHandler(webapp2.RequestHandler):
             self.error(401)
 
         self._create_note(user)
-
-        logout_url = users.create_logout_url(self.request.uri)
         template_context = {
-            'user': user.nickname(),
-            'logout_url': logout_url,
+            'user': self._user_to_dict(user)
         }
         self.response.out.write(
             self._render_template('main.html', template_context))

@@ -10,6 +10,7 @@ requirejs.config({
         text: 'text/text',
         jquery: 'jquery/dist/jquery',
         backbone: 'backbone/backbone',
+        'backbone.composer': 'backbone.composer/backbone.composer',
         app: '../js'
     }
 });

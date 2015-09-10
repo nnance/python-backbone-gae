@@ -1,14 +1,13 @@
 define(function (require) {
-    // Load any app-specific modules
-    // with a relative require call,
-    // like:
-    var Backbone = require('backbone');
+    var Composer = require('backbone.composer');
     var MainView = require('app/view/main');
     var User = require('app/models/user');
+    var Notes = require('app/collections/note');
 
     var view = new MainView({
       el: 'body',
-      model: new User()
+      model: new User(),
+      collection: new Notes()
     });
     view.render();
 });

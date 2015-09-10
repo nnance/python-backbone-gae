@@ -23,4 +23,6 @@
       <button type="submit">Save note</button>
     </div>
   </form>
+  <div id="notes">
+  </div>
 </div>

@@ -1,14 +1,27 @@
 define(function (require) {
     var _ = require('underscore');
     var Backbone = require('backbone');
-    var tpl = require('text!app/templates/main.tpl');
+    var NoteView = require('app/view/note');
 
     var View = Backbone.View.extend({
-        template: _.template(tpl),
+        template: _.template(require('text!app/templates/main.tpl')),
 
-        render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
-            return this;
+        initialize: function() {
+            if (this.collection) {
+                this.collection.forEach(this.addItem, this);
+                this.listenTo(this.collection,'add',this.addItem);
+            }
+        },
+
+        serializeData: function() {
+            return this.model.toJSON();
+        },
+
+        addItem: function(note) {
+            this.addSubView({
+              view: new NoteView({model: note}),
+              selector: '#notes'
+            });
         }
     });
 

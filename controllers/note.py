@@ -31,13 +31,18 @@ class NoteHandler(webapp2.RequestHandler):
         item_titles = self.request.get('checklist_items').split(',')
         Note.create_note(user, note_data, item_titles)
 
+    def _user_to_dict(self, user):
+        return {
+            'nickname': user.nickname(),
+            'email': user.email(),
+            'logout_url': users.create_logout_url(self.request.uri)
+        }
+
     def get(self):
         user = users.get_current_user()
         if user is not None:
-            logout_url = users.create_logout_url(self.request.uri)
             template_context = {
-                'user': user.nickname(),
-                'logout_url': logout_url,
+                'user': self._user_to_dict(user)
             }
             self.response.out.write(
                 self._render_template('main.html', template_context))

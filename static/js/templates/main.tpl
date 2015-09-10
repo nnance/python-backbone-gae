@@ -2,7 +2,7 @@
 
   <h1>Welcome to Notes!</h1>
 
-  <p>Hello, <b>{{ user }}</b> - <a href="{{ logout_url }}">Logout</a> </p>
+  <p>Hello, <b><%=nickname%></b> - <a href="<%=logout_url%>">Logout</a> </p>
 
   <form action="" method="post">
     <legend>Add a new note</legend>

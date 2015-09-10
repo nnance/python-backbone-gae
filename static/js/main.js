@@ -4,7 +4,11 @@ define(function (require) {
     // like:
     var Backbone = require('backbone');
     var MainView = require('app/view/main');
+    var User = require('app/models/user');
 
-    var view = new MainView({el: 'body'});
+    var view = new MainView({
+      el: 'body',
+      model: new User()
+    });
     view.render();
 });

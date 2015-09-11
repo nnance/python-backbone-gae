@@ -14,12 +14,19 @@ jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(path))
 
 class NoteHandler(webapp2.RequestHandler):
+    def _checklist_to_dict(self, item):
+        return {
+            'title': str(item.title) if hasattr(item,'title') else ''
+        }
+
     def _note_to_dict(self, note):
         logging.debug(note);
-        return {
+        result = {
             'title': str(note.title),
-            'content': str(note.content)
+            'content': str(note.content),
+            'checklist_items': map(self._checklist_to_dict, note.checklist_items)
         }
+        return result
 
     def _render_template(self, template_name, context=None):
         if context is None:

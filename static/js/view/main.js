@@ -1,6 +1,7 @@
 define(function (require) {
     var _ = require('underscore');
     var Backbone = require('backbone');
+    var Composer = require('backbone.composer');
     var NoteView = require('app/view/note');
 
     var View = Backbone.View.extend({

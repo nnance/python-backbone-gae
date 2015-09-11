@@ -3,12 +3,7 @@ define(function(require){
   var Note = require('app/models/note');
 
   var Note = Backbone.Collection.extend({
-    model: Note,
-    initialize: function() {
-      if (notes) {
-        this.reset(notes);
-      }
-    }
+    model: Note
   });
 
   return Note;

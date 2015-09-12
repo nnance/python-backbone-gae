@@ -14,7 +14,7 @@ define(function(require){
       this.options.items.forEach(function(item) {
         item.checked = (item.checked) ? true : false;
         this.$el.append(item_template(item));
-      });
+      }, this);
       return this;
     }
   });

@@ -38,7 +38,11 @@ class Note(ndb.Model):
         return note
 
     def to_dict(self):
-        return super(Note,self).to_dict(exclude=['date_created','checklist_items'])
+        logging.debug(self)
+        data = super(Note,self).to_dict(exclude=['date_created','checklist_items'])
+        if (len(self.checklist_items) > 1):
+            data['checklist_items'] = map(lambda item: item.get().to_dict(), self.checklist_items)
+        return data
 
     def to_json(self):
         data = self.to_dict()

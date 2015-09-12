@@ -1,6 +1,8 @@
 import webapp2
-from controllers.note import NoteHandler
+from controllers import main
+from controllers import api
 
 app = webapp2.WSGIApplication([
-    ('/', NoteHandler),
+    ('/', main.MainHandler),
+    ('^/api/notes/?$', api.note.NoteHandler),
 ], debug=True)

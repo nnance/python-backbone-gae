@@ -3,7 +3,8 @@ define(function(require){
   var Note = require('app/models/note');
 
   var Note = Backbone.Collection.extend({
-    model: Note
+    model: Note,
+    url: '/api/notes'
   });
 
   return Note;

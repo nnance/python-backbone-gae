@@ -1,4 +1,5 @@
 import logging
+import json
 from google.appengine.ext import ndb
 from checklistitem import CheckListItem
 
@@ -34,3 +35,11 @@ class Note(ndb.Model):
             note.checklist_items.append(item.key)
 
         note.put()
+        return note
+
+    def to_dict(self):
+        return super(Note,self).to_dict(exclude=['date_created','checklist_items'])
+
+    def to_json(self):
+        data = self.to_dict()
+        return json.dumps(data)

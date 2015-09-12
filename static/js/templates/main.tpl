@@ -20,7 +20,7 @@
              placeholder="comma,separated,values"/>
     </div>
     <div class="form-group">
-      <button type="submit">Save note</button>
+      <button type="button">Save note</button>
     </div>
   </form>
   <div id="notes">

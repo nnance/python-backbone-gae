@@ -6,8 +6,8 @@
 
   <link rel="stylesheet" type="text/css" href="static/css/notes.css">
   <script>
-    var user = {{user}};
-    var notes = {{notes}};
+    var user = {{json.dumps(user)}};
+    var notes = {{json.dumps(notes)}};
   </script>
   <script data-main="static/app" src="static/components/requirejs/require.js"></script>
 </head>

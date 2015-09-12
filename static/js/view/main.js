@@ -7,6 +7,10 @@ define(function (require) {
     var View = Backbone.View.extend({
         template: _.template(require('text!app/templates/main.tpl')),
 
+        events: {
+          'click button': 'saveNote'
+        },
+
         initialize: function() {
             if (this.collection) {
                 this.collection.forEach(this.addItem, this);
@@ -23,6 +27,10 @@ define(function (require) {
               view: new NoteView({model: note}),
               selector: '#notes'
             });
+        },
+
+        saveNote: function() {
+          this.collection.create(this.serializeForm('form'), {wait: true});
         }
     });
 

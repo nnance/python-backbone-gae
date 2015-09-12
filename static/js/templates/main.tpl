@@ -4,7 +4,7 @@
 
   <p>Hello, <b><%=nickname%></b> - <a href="<%=logout_url%>">Logout</a> </p>
 
-  <form action="" method="post">
+  <form>
     <legend>Add a new note</legend>
     <div class="form-group">
       <label for="title">Title:</label>

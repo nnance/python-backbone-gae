@@ -13,8 +13,8 @@ define(function (require) {
 
         initialize: function() {
             if (this.collection) {
-                this.collection.forEach(this.addItem, this);
-                this.listenTo(this.collection,'add',this.addItem);
+                this.collection.forEach(_.partial(this.addItem,'append'), this);
+                this.listenTo(this.collection,'add', _.partial(this.addItem,'prepend'));
             }
         },
 
@@ -22,15 +22,19 @@ define(function (require) {
             return this.model.toJSON();
         },
 
-        addItem: function(note) {
+        addItem: function(location, note) {
             this.addSubView({
               view: new NoteView({model: note}),
-              selector: '#notes'
+              selector: '#notes',
+              location: location
             });
         },
 
         saveNote: function() {
-          this.collection.create(this.serializeForm('form'), {wait: true});
+          var model = this.collection.create(this.serializeForm('form'), {wait: true});
+          if (model && !model.validationError) {
+            this.$('form')[0].reset();
+          }
         }
     });
 
